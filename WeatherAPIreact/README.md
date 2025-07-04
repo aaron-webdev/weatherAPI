@@ -8,7 +8,7 @@
 
 
 #### API URL:
-- https://api.open-meteo.com/v1/forecast?latitude=35.9606&longitude=-83.9207&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=America%2FNew_York&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch
+- https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch
 
 #### API URL Break Down
 https://api.open-meteo.com/v1/forecast?
@@ -27,7 +27,7 @@ wind_speed_10m,
 wind_direction_10m,
 wind_gusts_10m                                          }
 &
-timezone=America %2F New_York                           controlled by user input (City Select)
+timezone=auto                           controlled by user input (City Select)
 &
 wind_speed_unit=mph                                     units   {
 &

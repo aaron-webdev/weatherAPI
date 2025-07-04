@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <>
-    <InputComponent/>
+    
     <section className='d-flex flex-column text-center'>
       <div className='m-auto my-5'>
         <h1>Weather Warden</h1>
@@ -17,6 +17,7 @@ export default function App() {
       </div>
     <br/>
       <WeatherDisplay/>
+      <InputComponent/>
     </section>
     </>
   )
