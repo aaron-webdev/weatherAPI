@@ -1,24 +1,49 @@
 import {useState, useEffect} from 'react'
-import {Form} from 'react-bootstrap'
+import {Form, Row, Col} from 'react-bootstrap'
 
 
 export default function InputComponent()
 {
     const [city, setCity] = useState('newYorkCity');
-    const [customLat, setCustomLat] = useState(0);
-    const [customLong, setCustomLong] = useState(0);
-
+    const [customLatitude, setCustomLatitude] = useState(0);
+    const [customLongitude, setCustomLongitude] = useState(0);
+    const [searchedLatitude, setSearchedLatitude] = useState(0);
+    const [searchedLongitude, setSearchedLongitude] = useState(0);
+    const APIurl = `https://api.open-meteo.com/v1/forecast?latitude=${searchedLatitude}&longitude=${searchedLongitude}&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`
+    const cityCoords = {
+        "newYorkCity": {cityLatitude: 40.7128, cityLongitude: -74.0061},
+        "boston": {cityLatitude: 42.3604, cityLongitude: -71.0580},
+        "detroit": {cityLatitude: 42.3297, cityLongitude: -83.0425},
+        "losAngeles": {cityLatitude: 34.0537, cityLongitude: -118.2427},
+        "houston": {cityLatitude: 29.7602, cityLongitude: -95.3694},
+        "nashville": {cityLatitude: 36.1673, cityLongitude: -86.7784},
+        "knoxville": {cityLatitude: 35.964668, cityLongitude: -83.9264},
+        "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784},
+    };
 
     useEffect(() => {
-
+        fetch(APIurl)
+        .then(response => {
+            if(!response.ok)
+            {
+                throw new Error('Network failed to repond: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.eroor('Error fetching data: ', error);
+        });
     }, [city])
 
 
 
     return(
         <>
-            <section className='d-flex'>
-                <div className='m-auto'>
+            <section className='d-flex border border-3 border-black rounded-3 p-3'>
+                <div id='citySelectRadiosDiv'className='m-auto'>
                     <h4>Input Component</h4>
                     <Form>
                         <Form.Check
@@ -87,31 +112,46 @@ export default function InputComponent()
                         />
                     </Form>
                     <section id='customCityDiv'>
-                        <h5>Custom Location:</h5>
+                        <Form.Check
+                            name="selectLocation"
+                            type="radio"
+                            label="Custom Location:"
+                            value="customLocation"
+                            checked={city==="customLocation"}
+                            onChange={(e) => setCity(e.target.value)}
+                        />
                         <div className='d-flex'>
-                            <div>
-                                <label for='latitude'>Latitude:</label>
+                            <Row>
+                                <Col>
+                                <label htmlFor='customLatitude'>Latitude:</label>
+                                </Col>
+                                <Col>
                                 <input
                                     placeholder='Latitude:'
-                                    id='latitude'
-                                    value={customLat}
-                                    onChange={(e) => setCustomLat(e.target.value)}
+                                    id='customLatitude'
+                                    value={customLatitude}
+                                    onChange={(e) => setCustomLatitude(e.target.value)}
                                 />
-                            </div>
-                            <div>
-                                <label for='logitude'>Longitude:</label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                <label htmlFor='customLongitude'>Longitude:</label>
+                                </Col>
+                                <Col>
                                 <input
                                     placeholder='Longitude:'
-                                    id='logitude'
-                                    value={customLong}
-                                    onChange={(e) => setCustomLong(e.target.value)}
-                                />   
-                            </div>    
+                                    id='customLongitude'
+                                    value={customLongitude}
+                                    onChange={(e) => setCustomLongitude(e.target.value)}
+                                />
+                                </Col>
+                            </Row>
                         </div>
-                        
                     </section>
                 </div>
             </section>
+            <p>Current City: {city}</p>
         </>
     );
 }
