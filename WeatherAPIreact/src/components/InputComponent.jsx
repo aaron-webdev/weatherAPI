@@ -21,9 +21,10 @@ export default function InputComponent()
         "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784},
     };
 
-    useEffect(() => {
-        fetch(APIurl)
-        .then(response => {
+
+    useEffect(() => { //Redo this in a way that makes sense too me  Perhaps a series of functions that each call the next until the information is fetched
+        fetch(APIurl) // for example I could call a function that sets the coords that then calls the API querey function
+        .then(response => { //Instead of a useEffect I could just usea normal function triggered by a button click
             if(!response.ok)
             {
                 throw new Error('Network failed to repond: ' + response.statusText);
