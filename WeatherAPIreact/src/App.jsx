@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import {Row, Col} from 'react-bootstrap';
@@ -6,7 +5,6 @@ import WeatherDisplay from './components/WeatherDisplay';
 import InputComponent from './components/InputComponent';
 
 export default function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
