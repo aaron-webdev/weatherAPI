@@ -152,6 +152,8 @@ export default function InputComponent()
                 </div>
             </section>
             <p>Current City: {city}</p>
+            <p>Searched Lat: {searchedLatitude}</p>
+            <p>Searched Long: {searchedLongitude}</p>
         </>
     );
 }
