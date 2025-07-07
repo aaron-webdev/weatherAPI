@@ -7,7 +7,7 @@ export default function InputComponent()
     const [city, setCity] = useState('newYorkCity');
     const [searchedLatitude, setSearchedLatitude] = useState(0);
     const [searchedLongitude, setSearchedLongitude] = useState(0);
-    const APIurl = `https://api.open-meteo.com/v1/forecast?latitude=${searchedLatitude}&longitude=${searchedLongitude}&current_weather=true&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`
+    const APIurl = `https://api.open-meteo.com/v1/forecast?latitude=${searchedLatitude}&longitude=${searchedLongitude}&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`
     const cityCoords = {
         "newYorkCity": {cityLatitude: 40.7128, cityLongitude: -74.0061},
         "boston": {cityLatitude: 42.3604, cityLongitude: -71.0580},
