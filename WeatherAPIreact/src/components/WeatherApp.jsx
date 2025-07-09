@@ -19,9 +19,15 @@ export default function InputComponent()
         "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784},
     };
     let currentTime = '';
+    let currentWeatherCOde = 0;
     let currentTemperature = 0;
-    let currentRelHumidity =0;
-    
+    let currentRelHumidity = 0;
+    let currentSurfacePressure = 0;
+    let currentPrecipitation = 0;
+    let currentWindDirection = '';
+    let currentWindSpeed = 0;
+    let currentWindGust = 0;
+    //precipitaction, preassure, weather code, wind direction, wind gusts, 
 
 
 
