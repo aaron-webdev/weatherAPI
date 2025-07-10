@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import {Form, Button} from 'react-bootstrap'
+import { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 
 export default function InputComponent()
@@ -19,7 +19,7 @@ export default function InputComponent()
         "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784,  cityName: 'Portland'},
     };
     let currentTime = '';
-    let currentWeatherCOde = 0;
+    let currentWeatherCode = 0;
     let currentTemperature = 0;
     let currentRelHumidity = 0;
     let currentSurfacePressure = 0;
@@ -69,43 +69,45 @@ useEffect(() => {
 
 function showWeatherData(weatherInfo)
 {
+    if (weatherInfo)
+    {
     currentTime = weatherInfo.current.time;
-    currentWeatherCOde = 0;
-    currentTemperature = 0;
-    currentRelHumidity = 0;
-    currentSurfacePressure = 0;
-    currentPrecipitation = 0;
-    currentWindDirection = '';
-    currentWindSpeed = 0;
-    currentWindGust = 0;
+    currentWeatherCode = weatherInfo.current.weather_code;
+    currentTemperature = weatherInfo.current.temperature_2m;
+    currentRelHumidity = weatherInfo.current.relative_humidity_2m;
+    currentSurfacePressure = weatherInfo.current.surface_pressure;
+    currentPrecipitation = weatherInfo.current.precipitation;
+    currentWindDirection = weatherInfo.current.wind_direction_10m;
+    currentWindSpeed = weatherInfo.current.wind_speed_10m;
+    currentWindGust = weatherInfo.current.wind_gusts_10m;
+    }
+    else
+    {
+        return
+    }
+
 }
 
 
 return(
     <>
         <Button onClick={showWeatherData(weatherInfo)}>Get Weather Report</Button>
-        <section id='displayComponent'>
+        <section id='displayComponent' className=' border border-3 border-black rounded-3 p-3 m-2'>
             <div>
                 <h4>Weather Report as of: {currentTime}</h4>
                 <h6>{cityCoords[city].cityName}</h6>
-                <p>Weather Code:</p>
-                <p>Current Temperature:</p>
-                <p></p>
-                    
-   {/*
-    let currentTime = '';
-    let currentWeatherCOde = 0;
-    let currentTemperature = 0;
-    let currentRelHumidity = 0;
-    let currentSurfacePressure = 0;
-    let currentPrecipitation = 0;
-    let currentWindDirection = '';
-    let currentWindSpeed = 0;
-    let currentWindGust = 0;
-   */} 
+                <p>Weather Code: {currentWeatherCode}</p>
+                <p>Temperature: {currentTemperature}°F</p>
+                <p>Relative Humidity: {currentRelHumidity}%</p>
+                <p>Pressure: {currentSurfacePressure}hPa</p>
+                <p>Precipitation: {currentPrecipitation} inches</p>
+                <p>Wind Direction: {currentWindDirection}°</p>
+                <p>Wind Speed:  {currentWindSpeed} mp/h</p>
+                <p>Gusts: {currentWindGust} mp/h</p>
+
             </div>
         </section>
-        <section className=' border border-3 border-black rounded-3 p-3'>
+        <section className=' border border-3 border-black rounded-3 p-3 m-2'>
             <div id='citySelectRadiosDiv'className='m-auto'>
                 <h5>Select your city</h5>
                 <Form>
@@ -176,16 +178,25 @@ return(
                 </Form>
             </div>
         </section>
-        <p>Current City: {city}</p>
-        <p>Searched Lat: {searchedLatitude}</p>
-        <p>Searched Long: {searchedLongitude}</p>
-
     </>
     );
 }
 
 /*
-
-
-
+How to format the Date and Time
+function formatDateTime(isoString) {
+  const date = new Date(isoString);
+  
+  // Extract time components
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+  // Extract date components
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+  const year = String(date.getFullYear()).padStart(4, '0');
+  
+  // Return formatted string
+  return `${hours}:${minutes} ${day}-${month}-${year}`;
+}
 */
