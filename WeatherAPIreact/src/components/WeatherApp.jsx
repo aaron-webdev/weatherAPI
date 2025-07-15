@@ -7,6 +7,7 @@ export default function InputComponent()
     const [city, setCity] = useState('newYorkCity');
     const [searchedLatitude, setSearchedLatitude] = useState(40.7128);
     const [searchedLongitude, setSearchedLongitude] = useState(-74.0061);
+    const [weatherInfo, setWeatherInfo] = useState(null);
     const APIurl = `https://api.open-meteo.com/v1/forecast?latitude=${searchedLatitude}&longitude=${searchedLongitude}&current=weather_code,temperature_2m,apparent_temperature,precipitation,relative_humidity_2m,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`;
     const cityCoords = {
         "newYorkCity": {cityLatitude: 40.7128, cityLongitude: -74.0061, cityName: 'New York City'},
@@ -18,6 +19,51 @@ export default function InputComponent()
         "knoxville": {cityLatitude: 35.964668, cityLongitude: -83.9264,  cityName: 'Knoxville'},
         "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784,  cityName: 'Portland'},
     };
+    const weatherCodes = {
+        0: {skies: "Clear", image: "imgSrc"},
+        1: {skies: "Mostly Clear", image: "imgSrc"},
+        2: {skies: "Partly Cloudy", image: "imgSrc"},
+        3: {skies: "Overcast", image: "imgSrc"},
+        45: {skies: "Fog", image: "imgSrc"},
+        48: {skies: "Depositing Fog", image: "imgSrc"},
+        51: {skies: "Light Drizzle", image: "imgSrc"},
+        53: {skies: "Moderate Drizzle", image: "imgSrc"},
+        55: {skies: "Heavy Drizzle", image: "imgSrc"},
+        56: {skies: "Light Freezing Drizzle", image: "imgSrc"},
+        57: {skies: "Freezing Drizzle", image: "imgSrc"},
+        61: {skies: "Light Rain", image: "imgSrc"},
+        63: {skies: "Rain", image: "imgSrc"},
+        65: {skies: "Heavy Rain", image: "imgSrc"},
+        66: {skies: "Light Freezing Rain", image: "imgSrc"},
+        67: {skies: "Freezing Rain", image: "imgSrc"},
+        71: {skies: "Flurries", image: "imgSrc"},
+        73: {skies: "Snow", image: "imgSrc"},
+        75: {skies: "Heavy Snow", image: "imgSrc"},
+        77: {skies: "Snow Grains", image: "imgSrc"},
+        80: {skies: "Light Rain Showers", image: "imgSrc"},
+        81: {skies: "Rain Showers", image: "imgSrc"},
+        82: {skies: "Heavy Rain Showers", image: "imgSrc"},
+        85: {skies: "Light Snow Showers", image: "imgSrc"},
+        86: {skies: "Heavy Snow Showers", image: "imgSrc"},
+        95: {skies: "Thunderstorms", image: "imgSrc"},
+        96: {skies: "Storms w/ Light Hail", image: "imgSrc"},
+        99: {skies: "Storms w/ Hail", image: "imgSrc"},
+    }
+/*
+- 0                   Clear sky
+- 1, 2, 3	            Mainly clear, partly cloudy, and overcast
+- 45, 48	            Fog and depositing rime fog
+- 51, 53, 55	        Drizzle: Light, moderate, and dense intensity
+- 56, 57	            Freezing Drizzle: Light and dense intensity
+- 61, 63, 65	        Rain: Slight, moderate and heavy intensity
+- 66, 67	            Freezing Rain: Light and heavy intensity
+- 71, 73, 75      	Snow fall: Slight, moderate, and heavy intensity
+- 77	                Snow grains
+- 80, 81, 82          Rain showers: Slight, moderate, and violent
+- 85, 86	            Snow showers slight and heavy
+- 95 *	            Thunderstorm: Slight or moderate
+- 96, 99 *	        Thunderstorm with slight and heavy hail
+*/
     let currentTime = '';
     let currentWeatherCode = 0;
     let currentTemperature = 0;
@@ -30,7 +76,7 @@ export default function InputComponent()
 
 
 
-    const [weatherInfo, setWeatherInfo] = useState(null);
+    
 
 
 //Update coords if the selected city changes
