@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import ClearDay from './../assets/clearDay.png';
+
 
 
 export default function InputComponent()
@@ -20,7 +22,7 @@ export default function InputComponent()
         "portland": {cityLatitude: 45.5152, cityLongitude: -122.6784,  cityName: 'Portland'},
     };
     const weatherCodes = {
-        0: {skies: "Clear", image: "imgSrc"},
+        0: {skies: "Clear", image: ClearDay},
         1: {skies: "Mostly Clear", image: "imgSrc"},
         2: {skies: "Partly Cloudy", image: "imgSrc"},
         3: {skies: "Overcast", image: "imgSrc"},
@@ -49,21 +51,6 @@ export default function InputComponent()
         96: {skies: "Storms w/ Light Hail", image: "imgSrc"},
         99: {skies: "Storms w/ Hail", image: "imgSrc"},
     }
-/*
-- 0                   Clear sky
-- 1, 2, 3	            Mainly clear, partly cloudy, and overcast
-- 45, 48	            Fog and depositing rime fog
-- 51, 53, 55	        Drizzle: Light, moderate, and dense intensity
-- 56, 57	            Freezing Drizzle: Light and dense intensity
-- 61, 63, 65	        Rain: Slight, moderate and heavy intensity
-- 66, 67	            Freezing Rain: Light and heavy intensity
-- 71, 73, 75      	Snow fall: Slight, moderate, and heavy intensity
-- 77	                Snow grains
-- 80, 81, 82          Rain showers: Slight, moderate, and violent
-- 85, 86	            Snow showers slight and heavy
-- 95 *	            Thunderstorm: Slight or moderate
-- 96, 99 *	        Thunderstorm with slight and heavy hail
-*/
     let currentTime = '';
     let currentWeatherCode = 0;
     let currentTemperature = 0;
@@ -74,9 +61,6 @@ export default function InputComponent()
     let currentWindSpeed = 0;
     let currentWindGust = 0;
 
-
-
-    
 
 
 //Update coords if the selected city changes
@@ -150,6 +134,7 @@ return(
                 <p>Wind Direction: {currentWindDirection}°</p>
                 <p>Wind Speed:  {currentWindSpeed} mp/h</p>
                 <p>Gusts: {currentWindGust} mp/h</p>
+                <p>{weatherCodes[0].image}</p>
 
             </div>
         </section>
