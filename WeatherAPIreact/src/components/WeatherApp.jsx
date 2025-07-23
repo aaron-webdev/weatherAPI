@@ -145,6 +145,7 @@ return(
                 <p>Wind Direction: {currentWindDirection}°</p>
                 <p>Wind Speed:  {currentWindSpeed} mp/h</p>
                 <p>Gusts: {currentWindGust} mp/h</p>
+                <p>Skies: {weatherCodes[currentWeatherCode].skies}</p>
                 <img alt='weatherCodeIcon' src={weatherCodes[currentWeatherCode].image}/>
 
             </div>
