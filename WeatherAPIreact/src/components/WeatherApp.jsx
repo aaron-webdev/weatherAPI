@@ -134,7 +134,7 @@ return(
                 <p>Wind Direction: {currentWindDirection}°</p>
                 <p>Wind Speed:  {currentWindSpeed} mp/h</p>
                 <p>Gusts: {currentWindGust} mp/h</p>
-                <p>{weatherCodes[0].image}</p>
+                <img alt='weatherCodeIcon' src={weatherCodes[0].image}/>
 
             </div>
         </section>
