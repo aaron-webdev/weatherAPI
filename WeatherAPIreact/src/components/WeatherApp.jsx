@@ -1,7 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ClearDay from './../assets/clearDay.png';
-
+import HeavyRain from './../assets/heavyRain.png';
+import LightingStorms from './../assets/lightiningStorm.png';
+import LightRain from './../assets/lightRain.png';
+import MostlyCloudy from './../assets/mostlyCloudy.png';
+import OverCast from './../assets/overcast.png';
+import PartlyCloudy from './../assets/partlyCloudy.png';
+import Rain from './../assets/rain.png';
+import Snow from './../assets/snow.png';
+import ThunderStorm from './../assets/thunderStorms.png';
+import Windy from './../assets/windy.png';
+//import PartlyCloudyNight from './../assets/partlyCloudyNight.png';
+//import ClearNight from './../assets/clearNight.png';
 
 
 export default function InputComponent()
@@ -23,33 +34,33 @@ export default function InputComponent()
     };
     const weatherCodes = {
         0: {skies: "Clear", image: ClearDay},
-        1: {skies: "Mostly Clear", image: "imgSrc"},
-        2: {skies: "Partly Cloudy", image: "imgSrc"},
-        3: {skies: "Overcast", image: "imgSrc"},
-        45: {skies: "Fog", image: "imgSrc"},
-        48: {skies: "Depositing Fog", image: "imgSrc"},
-        51: {skies: "Light Drizzle", image: "imgSrc"},
-        53: {skies: "Moderate Drizzle", image: "imgSrc"},
-        55: {skies: "Heavy Drizzle", image: "imgSrc"},
-        56: {skies: "Light Freezing Drizzle", image: "imgSrc"},
-        57: {skies: "Freezing Drizzle", image: "imgSrc"},
-        61: {skies: "Light Rain", image: "imgSrc"},
-        63: {skies: "Rain", image: "imgSrc"},
-        65: {skies: "Heavy Rain", image: "imgSrc"},
-        66: {skies: "Light Freezing Rain", image: "imgSrc"},
-        67: {skies: "Freezing Rain", image: "imgSrc"},
-        71: {skies: "Flurries", image: "imgSrc"},
-        73: {skies: "Snow", image: "imgSrc"},
-        75: {skies: "Heavy Snow", image: "imgSrc"},
-        77: {skies: "Snow Grains", image: "imgSrc"},
-        80: {skies: "Light Rain Showers", image: "imgSrc"},
-        81: {skies: "Rain Showers", image: "imgSrc"},
-        82: {skies: "Heavy Rain Showers", image: "imgSrc"},
-        85: {skies: "Light Snow Showers", image: "imgSrc"},
-        86: {skies: "Heavy Snow Showers", image: "imgSrc"},
-        95: {skies: "Thunderstorms", image: "imgSrc"},
-        96: {skies: "Storms w/ Light Hail", image: "imgSrc"},
-        99: {skies: "Storms w/ Hail", image: "imgSrc"},
+        1: {skies: "Mostly Clear", image: PartlyCloudy},
+        2: {skies: "Partly Cloudy", image: MostlyCloudy},
+        3: {skies: "Overcast", image: OverCast},
+        45: {skies: "Fog", image: Windy},
+        48: {skies: "Depositing Fog", image: OverCast},
+        51: {skies: "Light Drizzle", image: LightRain},
+        53: {skies: "Moderate Drizzle", image: LightRain},
+        55: {skies: "Heavy Drizzle", image: LightRain},
+        56: {skies: "Light Freezing Drizzle", image: LightRain},
+        57: {skies: "Freezing Drizzle", image: LightRain},
+        61: {skies: "Light Rain", image: Rain},
+        63: {skies: "Rain", image: Rain},
+        65: {skies: "Heavy Rain", image: HeavyRain},
+        66: {skies: "Light Freezing Rain", image: LightRain},
+        67: {skies: "Freezing Rain", image: LightRain},
+        71: {skies: "Flurries", image: Snow},
+        73: {skies: "Snow", image: Snow},
+        75: {skies: "Heavy Snow", image: Snow},
+        77: {skies: "Snow Grains", image: Snow},
+        80: {skies: "Light Rain Showers", image: LightRain},
+        81: {skies: "Rain Showers", image: Rain},
+        82: {skies: "Heavy Rain Showers", image: HeavyRain},
+        85: {skies: "Light Snow Showers", image: Snow},
+        86: {skies: "Heavy Snow Showers", image: Snow},
+        95: {skies: "Thunderstorms", image: LightingStorms},
+        96: {skies: "Storms w/ Light Hail", image: ThunderStorm},
+        99: {skies: "Storms w/ Hail", image: ThunderStorm},
     }
     let currentTime = '';
     let currentWeatherCode = 0;
@@ -134,7 +145,7 @@ return(
                 <p>Wind Direction: {currentWindDirection}°</p>
                 <p>Wind Speed:  {currentWindSpeed} mp/h</p>
                 <p>Gusts: {currentWindGust} mp/h</p>
-                <img alt='weatherCodeIcon' src={weatherCodes[0].image}/>
+                <img alt='weatherCodeIcon' src={weatherCodes[currentWeatherCode].image}/>
 
             </div>
         </section>
